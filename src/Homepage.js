@@ -52,22 +52,11 @@ const Homepage = () => {
                 </div>
                 </Toolbar>
             </AppBar>
-            <Grid container spacing={8} justify="spacing-around" alignItems="center" style={{paddingTop: "20px"}}>
+            <Grid container spacing={4} justify="spacing-around" alignItems="center" style={{paddingTop: "20px"}}>
                 <Grid item sm={3}>
                     <MovieCard />                
                 </Grid>
-                <Grid item sm={3}>
-                    <MovieCard />                
-                </Grid>
-                <Grid item sm={3}>
-                    <MovieCard />                
-                </Grid>
-                <Grid item sm={3}>
-                    <MovieCard />                
-                </Grid>
-                <Grid item sm={3}>
-                    <MovieCard />                
-                </Grid>
+                
             </Grid>
         </>      
     )   
