@@ -2,9 +2,9 @@ import React from 'react';
 
 import './custom-button.styles.scss';
 
-const CustomButton = () => {
+const CustomButton = props => {
     return (
-        <button className='custom-button'>Nominate</button>
+        <button className='custom-button' onClick={() => props.addNominations()}>Nominate</button>
     )
 }
 

@@ -11,7 +11,7 @@ const Results = props => {
         <div className='results-content'>
             <h3>{`Results for "${searchField}"`}</h3>
             {
-            movies.length > 0 && searchField !== ''? 
+            props.movies.length > 0 && searchField !== ''? 
             movies.map(movie => <Movie key={movie.imdbID} title={movie.Title} year={movie.Year}/>)
             :null      
             }

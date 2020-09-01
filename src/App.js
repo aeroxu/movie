@@ -1,41 +1,42 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import './App.css';
 
 import SearchBar from './component/searchbar/Search-bar';
 import Results from './component/results/results.component';
+import Nominations from './component/nominations/Nominations.component';
 
-class App extends Component {
-  state = {
-    movies: [],
-    searchField: '',
-    url: ''
-  }
+const App = () => {
+ 
+  const [movies, setMovies] = useState([]);
+  const [searchField, setSearchField] = useState('');
+  const [nominations, setNominations] = useState([]);
 
-  componentDidMount(){
-    fetch(this.state.url)
-      .then(response => response.json())
-      .then(data => data.hasOwnProperty('Search')? this.setState({ movies: data.Search }): null)
-  }
+useEffect(() => {
+    const fetchData = async () => {
+      const response = await fetch(`http://www.omdbapi.com/?s=${searchField}&apikey=ffa0edf2`)
+      const data = await response.json()
+      if(data.hasOwnProperty('Search')){
+        setMovies(data.Search)
+      }
+    }
+    fetchData();
+}, [searchField])
 
-  componentDidUpdate(){
-    fetch(this.state.url)
-      .then(response => response.json())
-      .then(data => data.hasOwnProperty('Search')? this.setState({ movies: data.Search }): null)
-  }
+  // addNominations = () => {
+  //   this.setState({nominations: this.state.movies})
+  // }
 
-  render(){
     return (
       <div className="App">
         <h1>The Shoppies</h1>
-        <SearchBar handleChange={e => this.setState({ 
-          searchField: e.target.value, 
-          url: `http://www.omdbapi.com/?s=${e.target.value}&apikey=ffa0edf2` 
-          })}/>
-        <Results movies={this.state.movies} searchField={this.state.searchField}/>
+        <SearchBar handleChange={e => {
+          setSearchField(e.target.value);
+        }}/>
+        <Results movies={movies} searchField={searchField} />
+        <Nominations movies={movies}/>
       </div>
     );
   } 
-}
 
 export default App;
