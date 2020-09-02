@@ -3,13 +3,17 @@ import React from 'react';
 import './movie.styles.scss';
 
 import CustomButton from '../custom-button/custom-button.component';
+import { useContext } from 'react';
+import NominationContext from '../context/nominations/nomination.context';
 
 
-const Movie = props => (
-    <div className='movie-item'>
-        <li className='movie-content'>{`${props.title} (${props.year})`}</li>
-        <CustomButton addNominations={() => props.addNominations()}/>
-    </div>
-)
-
+const Movie = props => {
+    const { addNominations, nominations } = useContext(NominationContext);
+    return(
+        <div className='movie-item'>
+            <li className='movie-content'>{`${props.title} (${props.year})`}</li>
+            <button disabled={nominations.find(x => x.imdbID === props.id)!==undefined} onClick={() => addNominations(props)}>Nominate</button>
+        </div>
+    )
+}
 export default Movie;
