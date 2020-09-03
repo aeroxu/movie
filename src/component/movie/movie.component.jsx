@@ -2,7 +2,6 @@ import React from 'react';
 
 import './movie.styles.scss';
 
-import CustomButton from '../custom-button/custom-button.component';
 import { useContext } from 'react';
 import NominationContext from '../context/nominations/nomination.context';
 

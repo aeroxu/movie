@@ -1,0 +1,9 @@
+.nomination-item{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+
+    .nomination-content{
+        margin: 10px 30px;
+    }
+}

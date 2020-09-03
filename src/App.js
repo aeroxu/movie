@@ -1,6 +1,6 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect } from 'react';
 
-import './App.css';
+import './App.scss';
 
 import SearchBar from './component/search-bar/Search-bar';
 import Results from './component/results/results.component';
@@ -15,11 +15,11 @@ const App = () => {
   // const nominate = useContext(NominationContext);
   
   const addNominations = props => {
-    setNominations([movies.find(movie => movie.imdbID === props.id), ...nominations]);
+    setNominations([...nominations, movies.find(movie => movie.imdbID === props.id)]);
   };
 
   const removeNominations = props => {
-    setNominations([movies.find(movie => movie.imdbID === props.id), ...nominations]);
+    setNominations(nominations.filter(nomination => nomination.imdbID !== props.id));
   };
     
 
@@ -36,14 +36,16 @@ useEffect(() => {
 
     return (
       <div className="App">
-        <h1>The Shoppies</h1>
+        <h1 className='title'>The Shoppies</h1>
         <SearchBar handleChange={e => {
           setSearchField(e.target.value);
         }}/>
-        <NominationContext.Provider value={{nominations, addNominations}}>
-          <Results movies={movies} searchField={searchField} />
+        <NominationContext.Provider value={{nominations, addNominations, removeNominations}}>
+          <div className='container'>
+            <Results movies={movies} searchField={searchField} />
+            <Nominations nominations={nominations}/>
+          </div>
         </NominationContext.Provider>
-        <Nominations nominations={nominations}/>
       </div>
     );
   } 

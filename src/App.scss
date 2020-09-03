@@ -1,0 +1,10 @@
+.App {
+    margin: 100px auto;
+    background-color: rgb(218, 220, 224);
+    width: 70vw;
+
+    .container {
+        display: flex;
+        justify-content: space-evenly;
+    }
+}

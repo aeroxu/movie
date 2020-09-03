@@ -1,17 +1,18 @@
 import React from 'react';
 
-// import './movie.styles.scss';
+import './nomination-items.styles.scss';
 
 import { useContext } from 'react';
 import NominationContext from '../context/nominations/nomination.context';
 
 
 const NominationItems = props => {
-    // const { addNominations, nominations } = useContext(NominationContext);
+    const { removeNominations } = useContext(NominationContext);
+    const { title, year } = props;
     return(
-        <div className='movie-item'>
-            <li className='movie-content'>{`${props.nominations.Title} (${props.nominations.Year})`}</li>
-            <button>Remove</button>
+        <div className='nomination-item'>
+            <li className='nomination-content'>{`${title} (${year})`}</li>
+            <button onClick={() => removeNominations(props)}>Remove</button>
         </div>
     )
 }
