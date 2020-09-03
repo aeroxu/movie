@@ -1,11 +1,12 @@
-const INITIAL_STATE = {
-    movies:[],
-    searchField:''
+export const initialState = {
+    movies: null,
+    searchField: '',
+    // nominations: [],
 }
 
-const reducer = (state, action) => {
+export const reducer = (state, action) => {
     switch (action.type) {
-        case 'SET_USER':
+        case 'SET_MOVIE':
             return {
                  ...state,
                  movies: action.payload
@@ -15,17 +16,37 @@ const reducer = (state, action) => {
                 ...state,
                 searchField: action.payload
             }
+        // case 'ADD_NOMINATIONS':
+        //     return {
+        //         ...state,
+        //         nominations: action.payload
+        //     }
+        // case 'REMOVE_NOMINATIONS':
+        //     return {
+        //         ...state,
+        //         nominations: action.payload
+        //     }
         default:
             return state;
     }
 };
 
-const setMovies = movies => ({
-    type: 'SET_USER',
-    payload: movies
-})
+export const setMovie = movie => ({
+    type: 'SET_MOVIE',
+    payload: movie
+});
 
-const setSearchField = searchField => ({
+export const setSearchField = searchField => ({
     type: 'SET_SEARCHFIELD',
     payload: searchField
 })
+
+// export const addNominations = props => ({
+//     type: 'ADD_NOMINATIONS',
+//     payload: [...initialState.nominations, initialState.movies.find(movie => movie.imdbID === props.id)]
+//   });
+
+// export const removeNominations = props => ({
+//     type: 'REMOVE_NOMINATIONS',
+//     payload: initialState.nominations.filter(nomination => nomination.imdbID !== props.id)
+// });
