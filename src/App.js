@@ -28,7 +28,7 @@ const App = () => {
 
   useEffect(() => {
       const fetchData = async () => {
-        const response = await fetch(`http://www.omdbapi.com/?s=${searchField}&apikey=ffa0edf2`)
+        const response = await fetch(`https://www.omdbapi.com/?s=${searchField}&apikey=ffa0edf2`)
         const data = await response.json()
         if(data.hasOwnProperty('Search')){
           dispatch(setMovie(data.Search));
