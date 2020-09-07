@@ -3,11 +3,11 @@ import React from 'react';
 import './movie.styles.scss';
 
 import { useContext } from 'react';
-import NominationContext from '../context/nominations/nomination.context';
+import ResultsContext from '../context/results/results.context';
 
 
 const Movie = props => {
-    const { addNominations, nominations } = useContext(NominationContext);
+    const { nominations, addNominations } = useContext(ResultsContext);
     return(
         <div className='movie-item'>
             <li className='movie-content'>{`${props.title} (${props.year})`}</li>
