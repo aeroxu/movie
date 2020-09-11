@@ -1,16 +1,17 @@
 import React from 'react';
 
-import './Search-bar.styles.scss';
+import './Search.styles.scss';
 
-import { ReactComponent as Search } from './../icon/search-icon.svg'
+import { ReactComponent as SearchIcon } from './../icon/search-icon.svg'
 
-const SearchBar = props => {
+
+const Search = props => {
     return (
         <div className='search'>
             <div className='search-container'>
                 <div className='search-box-title'>Movie title</div>
                 <div className='search-box-container'>
-                    <Search className="search-icon"/>
+                    <SearchIcon className="search-icon"/>
                     <input 
                         type='search' 
                         placeholder='Please type the movie title' 
@@ -23,4 +24,4 @@ const SearchBar = props => {
     )
 }
 
-export default SearchBar;
+export default React.memo(Search);

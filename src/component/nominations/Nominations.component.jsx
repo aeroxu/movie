@@ -3,10 +3,11 @@ import React, { useEffect, useContext } from 'react';
 import './Nominations.component.scss';
 
 import NominationItems from '../nomination-items/nomination-items.component';
-import NominationContext from '../context/nominations/nomination.context';
+import Context from '../context/context';
 
 const Nominations = () => {
-    const { nominations } = useContext(NominationContext);
+    const { state } = useContext(Context);
+    const { nominations } = state;
     useEffect(() => {
         if(nominations.length === 5){
           alert("Congratulations! You have 5 nominations!")
@@ -29,4 +30,4 @@ const Nominations = () => {
     )
 }
 
-export default Nominations;
+export default React.memo(Nominations);

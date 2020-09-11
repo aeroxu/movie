@@ -2,16 +2,24 @@ import React from 'react';
 
 import './movie.styles.scss';
 
-import { useContext } from 'react';
-import ResultsContext from '../context/results/results.context';
+import { useContext, useCallback } from 'react';
+import Context from '../context/context';
+import { setNominations } from '../reducer/state.action';
 
 
 const Movie = props => {
-    const { nominations, addNominations } = useContext(ResultsContext);
+    const { imdbID, Title, Year } = props.movie;
+    const { state, dispatch } = useContext(Context);
+    const { nominations } = state;
+  
+    const addNominations = useCallback(props => {
+        dispatch(setNominations([...nominations, props]));
+      },[dispatch, nominations]);
+
     return(
         <div className='movie-item'>
-            <li className='movie-content'>{`${props.title} (${props.year})`}</li>
-            <button disabled={nominations.find(x => x.imdbID === props.id)!==undefined} onClick={() => addNominations(props)}>Nominate</button>
+            <li className='movie-content'>{`${Title} (${Year})`}</li>
+            <button disabled={nominations.find(item => item.imdbID === imdbID)!==undefined} onClick={() => addNominations(props.movie)}>Nominate</button>
         </div>
     )
 }

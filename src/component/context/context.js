@@ -1,10 +1,10 @@
 import { createContext } from 'react';
 
-const ResultsContext = createContext({
-    addNominations: () => {},
+const Context = createContext({
+    setNominations: () => {},
     movie: [],
     searchField: '',
     nominations: [],
 });
 
-export default ResultsContext;
+export default Context;
