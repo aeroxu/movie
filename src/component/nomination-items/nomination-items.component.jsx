@@ -2,17 +2,14 @@ import React from 'react';
 
 import './nomination-items.styles.scss';
 
-import { useContext } from 'react';
-import Context from '../context/context';
-import { setNominations } from '../reducer/state.action';
+import { connect } from 'react-redux';
+import { setNominations } from '../../redux/nominations/nominations.actions';
 
 
-const NominationItems = ({ title, year, id }) => {
-    const { dispatch, state } = useContext(Context);
-    const { nominations } = state; 
+const NominationItems = ({ title, year, id, nominations, setNominations }) => {
 
     const removeNominations = id => {
-        dispatch(setNominations(nominations.filter(nomination => nomination.imdbID !== id)));
+        setNominations(nominations.filter(nomination => nomination.imdbID !== id));
       };
 
     return(
@@ -22,4 +19,13 @@ const NominationItems = ({ title, year, id }) => {
         </div>
     )
 }
-export default NominationItems;
+
+const mapStateToProps = state => ({
+    nominations:state.nominations.nominations
+})
+
+const mapDispatchToProps = dispatch => ({
+    setNominations: nominations => dispatch(setNominations(nominations))
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(NominationItems);
