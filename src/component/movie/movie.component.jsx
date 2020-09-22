@@ -8,9 +8,10 @@ import { setNominations } from '../../redux/nominations/nominations.actions';
 
 const Movie = props => {
     const { imdbID, Title, Year } = props.movie;
-    const { nominations } = props.nominations;
+ 
+    const { nominations, setNominations } = props;
   
-    const addNominations = newNominations => setNominations([newNominations]);
+    const addNominations = nomination => setNominations([...nominations, nomination]);
 
     return(
         <div className='movie-item'>
@@ -20,12 +21,12 @@ const Movie = props => {
     )
 }
 
-// const mapStateToProps = state => ({
-//     nominations: state.nominations.nomiantions,
-//   })
+const mapStateToProps = state => ({
+    nominations: state.nominations.nominations,
+  })
 
 const mapDispatchToProps = dispatch => ({
-    setNominaitons: nominations => dispatch(setNominations(nominations))
+    setNominations: nominations => dispatch(setNominations(nominations))
 })
 
-export default connect(null, mapDispatchToProps)(Movie);
+export default connect(mapStateToProps, mapDispatchToProps)(Movie);

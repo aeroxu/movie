@@ -7,13 +7,6 @@ import { connect } from 'react-redux';
 
 class Nominations extends Component {
 
-    componentDidMount(){
-        const {nominations} = this.props;
-        if(nominations.length === 5){
-          alert("Congratulations! You have 5 nominations!")
-        }
-    }
-
     render(){
         const {nominations} = this.props
         return (
@@ -30,7 +23,14 @@ class Nominations extends Component {
                 </div>
             </div>
         )
-    }   
+    } 
+    
+    componentDidUpdate(){
+        const {nominations} = this.props;
+        if(nominations.length === 5){
+          alert("Congratulations! You have 5 nominations!")
+        }
+    }
 }
 
 const mapStateToProps = state => ({
